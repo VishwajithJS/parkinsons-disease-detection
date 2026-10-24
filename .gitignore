@@ -1,0 +1,13 @@
+*.venv/
+datasets/
+TEST_DATA/
+research papers/
+uploads/
+static/gradcam/
+prediction_logs.csv
+__pycache__/
+*.pyc
+.env
+*.docx
+*.pptx
+model/parkinsons_resnet50_model.h5

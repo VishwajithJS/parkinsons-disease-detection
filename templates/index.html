@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Parkinson Detection</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🧠 AI Parkinson Detection System</h1>
+
+    <form action="/predict"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <input type="file"
+               name="file"
+               required>
+
+        <button type="submit">
+            Predict
+        </button>
+
+    </form>
+
+    {% if prediction %}
+
+    <div class="result-card">
+
+        <h2 style="color:{{ color }}">
+            {{ prediction }}
+        </h2>
+
+        <h3 class="confidence-text">
+            Confidence : {{ confidence }}%
+        </h3>
+
+        <div class="progress-bar">
+            <div class="progress-fill"
+                 style="width:{{ confidence }}%">
+            </div>
+        </div>
+
+        <div class="images-row">
+
+            <div class="image-box">
+
+                <h3>
+                    Uploaded Image
+                </h3>
+
+                <img
+                    src="{{ url_for('uploaded_file',
+                    filename=uploaded_image) }}"
+                    class="result-image"
+                >
+
+            </div>
+
+            <div class="image-box">
+
+                <h3>
+                    Grad-CAM Output
+                </h3>
+
+                <img
+                    src="{{ url_for('static',
+                    filename=gradcam) }}?v={{ confidence }}"
+                    class="result-image"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
